@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./weather.css">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500&family=Caprasimo&family=Cinzel:wght@600&family=DM+Sans:wght@300&family=Dancing+Script:wght@400;500&family=Hind+Siliguri:wght@700&family=Josefin+Sans&family=Kaushan+Script&family=Lilita+One&family=Open+Sans:wght@300&family=REM:wght@500&family=Raleway:ital,wght@1,100&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <!-- remixicon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" integrity="sha512-HXXR0l2yMwHDrDyxJbrMD9eLvPe3z3qL3PPeozNTsiHJEENxx8DH2CxmV05iwG0dwoz5n4gQZQyYLUNt1Wdgfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- fav icon -->
+    <link rel="icon" type="image/x-icon" href="https://us.123rf.com/450wm/luka007/luka0071609/luka007160900207/62402601-lightning-rain-cloud-meteo-icon.jpg?ver=6">
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="bg-img">
+        <div class="container">
+          <br><br><br><br>
+           <div  class="row mb-5">
+            
+                <div class="col-2"></div>
+                          <div class="col-md-5 mt-5 " id="main"   style="background-image: url('https://cdn.wallpapersafari.com/99/57/rkYlcT.jpg'); height: 500px; width: 500px; background-repeat: no-repeat; background-size: cover;">
+                              <br><br><br><br><br><br><br>
+                              
+                              <div class=" input-group  mb-3">
+                                  <input type="text" id="inputName" class=" form-control w-25 rounded" placeholder="Enter City Name..." style="background-color: rgba(38, 38, 27, 0.299);" aria-describedby="basic-addon2">
+                                  <div class="input-group-append">
+                                    <button id="srch" onclick="search()" class="btn btn-outline-primary rounded ms-2  " style="background-color: rgb(48, 214, 233);" type="button"><i class="ri-search-line ri-2x"></i></button>
+                                    <a href="javascript: location. reload();" class="btn btn-outline-light rounded ms-1 " style="background-color: rgb(28, 32, 40);"><i class="ri-refresh-line  ri-2x"></i></a>
+                                  </div>
+                              </div>
+                              <p id="res"></p>
+                            <br><br><br>
+                            <div class=" d-flex">
+                              <div class="ms-3">
+                                <h1 id="res_weather"></h1>
+                                <h3 id="climate"></h3>
+                                <p id="p_tag" style="font-family: 'Hind Siliguri', sans-serif;"></p>
+                                <h2 id="res_place" style="font-family: 'Cinzel', serif;"></h2>
+                                <h3 id="datetime" class="me-2"></h3>
+                              </div>
+                              <div id="image"></div>
+                            </div>
+                          </div>
+                       <div id="result" class="col-md-3 mt-5 " style="background-color: rgba(12, 22, 128, 0.594); color: white;">
+                        <h1 class="heading text-center fw-bold"><br><br>Weather Details</h1><br><br>
+                        <label class="fs-4 mt-5 ms-5">COUNTRY</label><br>
+                        <label class="fs-4 mt-3 ms-5">HUMIDITY</label><br>
+                        <label class="fs-4 mt-3 ms-5">WIND</label><br>
+                        <label class= "fs-4 mt-3 ms-5 mb-4">PRESSURE</label><br>
+                       </div>
+                <div class="col-2"></div>
+           </div>
+         </div>
+    </div>       
+</body>
+<script>
+    function search(){
+        let cityName=inputName.value
+        console.log(cityName);
+    
+    if(cityName){
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=30770429954753f1f58c9be6db66e184`).then((response)=>{(response.json().then((weather)=>{
+      // console.log(item);
+      
+      climate=weather.weather[0].main
+      console.log(climate);
+      if(climate=='Clouds'){
+        main.style.backgroundImage = "url('https://images.unsplash.com/photo-1612251276789-9b1a8f2add8b?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGNsZWFyJTIwc2t5fGVufDB8fDB8fHww')";
+        res_weather.style.color="black"
+        p_tag.style.color="black"
+        res_place.style.color="black"
+        datetime.style.color="black"
+      }
+      else if(climate=='Mist'){
+        main.style.backgroundImage = "url('https://w.forfun.com/fetch/65/652403bbe2bfc3bc402318f122d2bc66.jpeg')";        res_weather.style.color="white"
+        res_weather.style.color="white"
+        p_tag.style.color="white"
+        res_place.style.color="white"
+        datetime.style.color="white"
+
+      }
+      else if(climate=='Clear'){
+        main.style.backgroundImage="url('https://www.therightnews.in/wp-content/uploads/2023/02/31.jpg')";
+        res_weather.style.color="white"
+        p_tag.style.color="white"
+        res_place.style.color="white"
+        datetime.style.color="white"
+        
+      }
+      else if(climate=='Rain'){
+        main.style.backgroundImage="url('https://www.vandelaydesign.com/wp-content/uploads/5-17.jpg') "
+        res_weather.style.color="white"
+        p_tag.style.color="white"
+        res_place.style.color="white"
+        datetime.style.color="white"
+
+      }
+      else if(climate=='Haze'){
+        main.style.backgroundImage="url('https://vigyanprasar.gov.in/isw/images/Biomass-combustion-emissions-behind-Delhis-hazy-winter.jpg')"
+        res_weather.style.color="black"
+        p_tag.style.color="black"
+        res_place.style.color="black"
+        datetime.style.color="black"
+      }
+     
+
+      //city name
+      cname=weather.name
+      console.log(cname);
+      //temp
+      temp=weather.main["temp"]
+      temp=(eval(temp-273.15))
+      temperature=temp.toFixed(1)
+      console.log(temperature);
+      //humidity
+      hum=weather.main["humidity"]
+      console.log(hum);
+      //wind
+      wind=weather.wind["speed"]
+      console.log(wind);
+      // ------------------------
+      //pressure
+      pressure=weather.main["pressure"]
+      console.log(pressure);
+      //country
+      country=weather.sys["country"]
+      console.log(country);
+
+      res_weather.innerHTML=`${temperature}℃`
+      
+      p_tag.innerHTML=`feels like ${temperature}℃`
+
+
+      res_place.innerHTML=`${cname}`
+
+      var date=Date()
+      console.log(date);
+      datetime.innerHTML=`${date}`
+
+result.innerHTML=`<h2 class="heading text-center"><br><br>Weather Details</h2>
+                        <br><br><br>
+                        <label class="fs-4 ms-5 mt-3">COUNTRY        : ${country} </label><br>
+                        <label class="fs-4 ms-5 mt-3">HUMIDITY       : ${hum}%</label><br>
+                        <label class="fs-4 ms-5 mt-3">WIND           : ${wind}kmph</label><br>
+                        <label class= "fs-4 ms-5 mt-3 mb-4">PRESSURE : ${pressure}</label><br>`
+
+
+     function clearAll(){
+      window.location.reload()
+     }
+
+              
+      
+    } ));}).catch((error)=>{console.log(error);})
+}
+else{
+  res.innerHTML='enter valid input'
+  res.style.color="red"  
+  // alert('enter a input')
+}
+
+}
+
+
+
+</script>
+
+</html>

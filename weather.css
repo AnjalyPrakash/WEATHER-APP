@@ -1,0 +1,44 @@
+*{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.bg-img{
+    background-image: url('https://free4kwallpapers.com/uploads/originals/2015/09/16/weather-live-wallpaper-icon.jpg');
+    height: 1000px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.heading{
+  color: rgb(53, 26, 26);
+}
+
+#res_weather{
+  color: white;
+}
+
+#res_place{
+  color: white;
+  font-weight:bold;
+  font-size: 20px;
+}
+
+#datetime{
+  color:white;
+  font-size: 15px;
+}
+
+#p_tag{
+  font-weight: bolder;
+  color:white;
+}
+
+#srch:hover{
+  background-color: white;
+  color:white;
+}
+
+#reset:hover{
+  color:rgb(219, 18, 18);
+}
