@@ -4,7 +4,7 @@
 
 .bg-img{
     background-image: url('https://free4kwallpapers.com/uploads/originals/2015/09/16/weather-live-wallpaper-icon.jpg');
-    height: 1000px;
+    height: 1400px;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -41,4 +41,13 @@
 
 #reset:hover{
   color:rgb(219, 18, 18);
+}
+
+
+
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
